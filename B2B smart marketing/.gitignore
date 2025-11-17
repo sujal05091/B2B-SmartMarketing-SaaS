@@ -1,0 +1,74 @@
+# Environment Variables
+.env
+*.env
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+logs/*.log
+*.log
+
+# Output Files
+output/
+!output/.gitkeep
+output/portfolios/*.pdf
+
+# Google Credentials
+config/google_credentials.json
+config/*.json
+!config/example_credentials.json
+
+# Test Coverage
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Temporary Files
+*.tmp
+*.bak
+temp/
+tmp/
+
+# Data Files
+*.csv
+*.xlsx
+!templates/*.csv
+
+# OS Files
+Thumbs.db
+.DS_Store

@@ -1,0 +1,94 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:7.0
+    container_name: leadgen_mongodb
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password123
+      MONGO_INITDB_DATABASE: leadgen_db
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - leadgen_network
+
+  redis:
+    image: redis:7-alpine
+    container_name: leadgen_redis
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - leadgen_network
+
+  backend:
+    build: ./backend
+    container_name: leadgen_backend
+    restart: always
+    ports:
+      - "8000:8000"
+    environment:
+      - MONGODB_URL=mongodb://admin:password123@mongodb:27017
+      - REDIS_URL=redis://redis:6379
+      - FRONTEND_URL=http://localhost:3000
+    volumes:
+      - ./backend:/app
+      - ./output:/app/output
+      - ./src:/app/src
+    depends_on:
+      - mongodb
+      - redis
+    networks:
+      - leadgen_network
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+
+  celery_worker:
+    build: ./backend
+    container_name: leadgen_celery
+    restart: always
+    environment:
+      - MONGODB_URL=mongodb://admin:password123@mongodb:27017
+      - REDIS_URL=redis://redis:6379
+    volumes:
+      - ./backend:/app
+      - ./output:/app/output
+      - ./src:/app/src
+    depends_on:
+      - mongodb
+      - redis
+      - backend
+    networks:
+      - leadgen_network
+    command: celery -A celery_app worker --loglevel=info
+
+  frontend:
+    build: ./frontend
+    container_name: leadgen_frontend
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:8000
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+      - /app/.next
+    depends_on:
+      - backend
+    networks:
+      - leadgen_network
+    command: npm run dev
+
+volumes:
+  mongodb_data:
+  redis_data:
+
+networks:
+  leadgen_network:
+    driver: bridge

@@ -1,0 +1,32 @@
+{
+  "Technology": {
+    "primary_color": "#0066CC",
+    "secondary_color": "#00A8E8",
+    "accent_color": "#F0F4F8",
+    "font": "Helvetica"
+  },
+  "Marketing": {
+    "primary_color": "#FF6B35",
+    "secondary_color": "#004E89",
+    "accent_color": "#FFF5E1",
+    "font": "Helvetica"
+  },
+  "Finance": {
+    "primary_color": "#1A5490",
+    "secondary_color": "#2E8BC0",
+    "accent_color": "#E8F4F8",
+    "font": "Helvetica"
+  },
+  "Healthcare": {
+    "primary_color": "#00A8A8",
+    "secondary_color": "#4ECDC4",
+    "accent_color": "#F0F9F9",
+    "font": "Helvetica"
+  },
+  "default": {
+    "primary_color": "#333333",
+    "secondary_color": "#666666",
+    "accent_color": "#F5F5F5",
+    "font": "Helvetica"
+  }
+}
