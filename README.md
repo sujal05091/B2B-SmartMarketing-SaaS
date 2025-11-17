@@ -385,14 +385,9 @@ All activities are logged to `logs/activity.log` with:
 - [ ] Machine learning for lead scoring
 - [ ] Web dashboard interface
 
-## 👥 Contributing
+## 👥 team
+yathika p amin 
 
-Contributions are welcome! Please follow:
-1. Fork the repository
-2. Create a feature branch
-3. Commit changes with clear messages
-4. Add tests for new features
-5. Submit a pull request
 
 ## 📄 License
 
@@ -402,7 +397,7 @@ This project is licensed under the MIT License.
 
 For issues, questions, or suggestions:
 - Open an issue on GitHub
-- Contact: [your-email@example.com]
+- Contact: [sujaludupi@gmail.com]
 
 ## 🏆 Acknowledgments
 
