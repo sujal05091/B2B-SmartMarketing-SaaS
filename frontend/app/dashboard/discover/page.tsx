@@ -49,8 +49,8 @@ export default function DiscoverLeadsPage() {
         return
       }
 
-      const response = await axios.post(
-        'http://localhost:8000/api/leads/discover',
+      const response = await api.post(
+        '/api/leads/discover',
         formData,
         {
           headers: {

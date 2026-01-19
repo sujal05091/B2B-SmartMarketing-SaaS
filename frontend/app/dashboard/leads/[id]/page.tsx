@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { ArrowLeft, ExternalLink, Mail, Loader2, Edit, Trash2 } from 'lucide-react'
 import Link from 'next/link'
-import axios from 'axios'
+import { api } from '@/lib/api'
 
 interface Lead {
   id: string
@@ -44,8 +44,8 @@ export default function LeadDetailPage() {
         return
       }
 
-      const response = await axios.get(
-        `http://localhost:8000/api/leads/${leadId}`,
+      const response = await api.get(
+        `/api/leads/${leadId}`,
         {
           headers: {
             'Authorization': `Bearer ${token}`
@@ -74,8 +74,8 @@ export default function LeadDetailPage() {
 
     try {
       const token = localStorage.getItem('token')
-      await axios.post(
-        `http://localhost:8000/api/leads/${leadId}/send-email`,
+      await api.post(
+        `/api/leads/${leadId}/send-email`,
         {},
         {
           headers: { 'Authorization': `Bearer ${token}` }
@@ -102,8 +102,8 @@ export default function LeadDetailPage() {
 
     try {
       const token = localStorage.getItem('token')
-      await axios.delete(
-        `http://localhost:8000/api/leads/${leadId}`,
+      await api.delete(
+        `/api/leads/${leadId}`,
         {
           headers: { 'Authorization': `Bearer ${token}` }
         }

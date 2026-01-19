@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { MessageCircle, Send, Bot, User, Loader2 } from 'lucide-react'
+import { API_URL } from '@/lib/api'
 
 interface Message {
   id: string
@@ -60,7 +61,7 @@ export default function ChatbotPage() {
         content: msg.content
       }))
 
-      const response = await fetch('http://localhost:8000/api/chatbot/chat', {
+      const response = await fetch(`${API_URL}/api/chatbot/chat`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -8,7 +8,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { ArrowLeft, Loader2 } from 'lucide-react'
-import axios from 'axios'
+import { api } from '@/lib/api'
 
 export default function LoginPage() {
   const router = useRouter()
@@ -25,7 +25,7 @@ export default function LoginPage() {
     setError('')
 
     try {
-      const response = await axios.post('http://localhost:8000/api/auth/login', formData)
+      const response = await api.post('/api/auth/login', formData)
       
       // Store the token
       localStorage.setItem('token', response.data.access_token)

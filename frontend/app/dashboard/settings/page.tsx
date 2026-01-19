@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import axios from 'axios'
+import { api } from '@/lib/api'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card } from '@/components/ui/card'
@@ -55,7 +55,7 @@ export default function SettingsPage() {
     try {
       setLoading(true)
       const token = localStorage.getItem('token')
-      const response = await axios.get('http://localhost:8000/api/settings/', {
+      const response = await api.get('/api/settings/', {
         headers: { 'Authorization': `Bearer ${token}` }
       })
       
@@ -95,7 +95,7 @@ export default function SettingsPage() {
       if (ollamaUrl) updates.ollama_base_url = ollamaUrl
       if (ollamaModel) updates.ollama_model = ollamaModel
       
-      await axios.put('http://localhost:8000/api/settings/api-keys', updates, {
+      await api.put('/api/settings/api-keys', updates, {
         headers: { 'Authorization': `Bearer ${token}` }
       })
       
@@ -131,7 +131,7 @@ export default function SettingsPage() {
         updates.smtp_password = smtpPassword
       }
       
-      await axios.put('http://localhost:8000/api/settings/smtp', updates, {
+      await api.put('/api/settings/smtp', updates, {
         headers: { 'Authorization': `Bearer ${token}` }
       })
       
@@ -153,7 +153,7 @@ export default function SettingsPage() {
       setTestingSmtp(true)
       const token = localStorage.getItem('token')
       
-      await axios.post('http://localhost:8000/api/emails/test-smtp', {}, {
+      await api.post('/api/emails/test-smtp', {}, {
         headers: { 'Authorization': `Bearer ${token}` }
       })
       
@@ -180,7 +180,7 @@ export default function SettingsPage() {
         updates.google_credentials = googleCredentials
       }
       
-      await axios.put('http://localhost:8000/api/settings/google-sheets', updates, {
+      await api.put('/api/settings/google-sheets', updates, {
         headers: { 'Authorization': `Bearer ${token}` }
       })
       

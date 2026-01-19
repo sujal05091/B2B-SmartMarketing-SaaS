@@ -8,7 +8,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { ArrowLeft, Loader2 } from 'lucide-react'
-import axios from 'axios'
+import { api } from '@/lib/api'
 
 export default function SignupPage() {
   const router = useRouter()
@@ -27,7 +27,7 @@ export default function SignupPage() {
     setError('')
 
     try {
-      const response = await axios.post('http://localhost:8000/api/auth/signup', formData)
+      const response = await api.post('/api/auth/signup', formData)
       
       // Store the token
       localStorage.setItem('token', response.data.access_token)

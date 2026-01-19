@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Users, Target, TrendingUp, Mail, LogOut, Settings as SettingsIcon, MessageCircle } from 'lucide-react'
+import { API_URL } from '@/lib/api'
 
 interface User {
   id: string
@@ -60,7 +61,7 @@ export default function DashboardPage() {
   const fetchDashboardStats = async () => {
     try {
       const token = localStorage.getItem('token')
-      const response = await fetch('http://localhost:8000/api/analytics/dashboard', {
+      const response = await fetch(`${API_URL}/api/analytics/dashboard`, {
         headers: {
           'Authorization': `Bearer ${token}`,
         },
@@ -78,7 +79,7 @@ export default function DashboardPage() {
   const fetchUserUsage = async () => {
     try {
       const token = localStorage.getItem('token')
-      const response = await fetch('http://localhost:8000/api/auth/me', {
+      const response = await fetch(`${API_URL}/api/auth/me`, {
         headers: {
           'Authorization': `Bearer ${token}`,
         },
