@@ -37,3 +37,5 @@ html5lib>=1.1
 
 # Email (Bonus)
 secure-smtplib>=0.1.1
+fastapi>=0.110.0
+uvicorn[standard]>=0.29.0
