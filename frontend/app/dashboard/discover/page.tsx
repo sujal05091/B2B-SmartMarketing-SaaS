@@ -8,7 +8,7 @@ import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { ArrowLeft, Search, Loader2, Download, ExternalLink } from 'lucide-react'
 import Link from 'next/link'
-import axios from 'axios'
+import { api } from '@/lib/api'
 
 interface Lead {
   name: string
